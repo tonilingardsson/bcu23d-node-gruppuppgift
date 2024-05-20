@@ -1,12 +1,47 @@
 // Sass variables for colors
 
-// Add more and correct color variables here as they are decided
-$primary-color: black;
-$secondary-color: green;
+// _colors.scss
 
-$button-primary-color: orange;
-$button-text-color: white;
+//! I might have added more color defaults than necessary. remove if not used.
+// Light theme colors - Default theme
+$light-background-color: #7f7f7f;       // Correct color
+$light-primary-color: #3498db;          // Correct color
+$light-secondary-color: green;          //! Decide or remove
+$light-button-primary-color: #262626;   // Correct color
+$light-button-text-color: #d87946;      // Correct color
+$light-border-color: brown;             //! Decide or remove   
+$light-card-color: lightgrey;           //! Decide or remove 
+$light-font-color: #ffffff;             // Correct color
 
-$border-color: brown;
-$card-color: lightgrey;
-$font-color: white;
+// Dark theme colors
+$dark-background-color: black;          // Correct color
+$dark-primary-color: white;
+$dark-secondary-color: lightgreen;
+$dark-button-primary-color: darkorange;
+$dark-button-text-color: black;
+$dark-border-color: darkbrown;
+$dark-card-color: grey;
+$dark-font-color: white;                // Correct color
+
+// CSS variables defined 
+:root {
+  --background-color: #{$light-background-color};
+  --primary-color: #{$light-primary-color};
+  --secondary-color: #{$light-secondary-color};
+  --button-primary-color: #{$light-button-primary-color};
+  --button-text-color: #{$light-button-text-color};
+  --border-color: #{$light-border-color};
+  --card-color: #{$light-card-color};
+  --font-color: #{$light-font-color};
+}
+
+[data-theme='dark'] {
+  --background-color: #{$dark-background-color};
+  --primary-color: #{$dark-primary-color};
+  --secondary-color: #{$dark-secondary-color};
+  --button-primary-color: #{$dark-button-primary-color};
+  --button-text-color: #{$dark-button-text-color};
+  --border-color: #{$dark-border-color};
+  --card-color: #{$dark-card-color};
+  --font-color: #{$dark-font-color};
+}
