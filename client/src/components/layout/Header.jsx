@@ -1,9 +1,8 @@
-import React, { useContext } from 'react';
-import { ThemeContext } from '../layout/ThemeContext';
+import React from 'react';
 import logo from '../../assets/vl-logo.webp';
+import ThemeToggle from './themes/ThemeToggle';
 
 export const Header = () => {
-  const { theme, toggleTheme } = useContext(ThemeContext);
   return (
     <header>
       <div className='header-container'>
@@ -18,10 +17,7 @@ export const Header = () => {
             <li><a href="/register">Register</a></li>
           </ul>
         </nav>
-
-        <button onClick={toggleTheme}>
-          {theme === 'light' ? '☀️' : '🌙'}
-        </button>
+        <ThemeToggle />
       </div>
     </header>
   );
