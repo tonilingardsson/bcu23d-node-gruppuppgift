@@ -1,0 +1,19 @@
+// index.scss
+
+// Abstracts (variables, functions, mixins, placeholders, etc.)
+@import './styles/abstract/colors.scss';
+@import './styles/abstract/typography.scss';
+@import './styles/abstract/variables.scss';
+
+// Reset and base styling
+@import './styles/reset.scss';
+@import './styles/base.scss';
+
+//Layout
+@import './styles/layout/header.scss';
+@import './styles/layout/ThemeToggle.scss'
+
+// Components
+
+// Pages
+
