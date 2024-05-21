@@ -5,8 +5,10 @@ body {
   background-color: var(--background-color);
   color: var(--font-color);
   line-height: 1.5;
-  
-  
+  width: $pageWidthDesk;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 pxToRem(16);
 }
 
 h1, h2, h3, h4, h5, h6 {
