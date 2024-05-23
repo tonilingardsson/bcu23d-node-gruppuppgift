@@ -15,6 +15,6 @@ const transactions = [
 
 export const transactionRepository = {
     get: async () => {
-        return transactions
+        return transactions;
     }
 }

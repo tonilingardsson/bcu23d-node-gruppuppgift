@@ -13,7 +13,7 @@ import router from './src/routes/router.mjs'
 const app = express();
 app.use(express.json());
 
-app.use(router);
+app.use('/api/v1', router);
 
 const PORT = 3000;
 // app.use(logHandler);
