@@ -1,4 +1,5 @@
 import express from 'express';
+import router from './src/routes/router.mjs'
 //import { PORT } from './startup.mjs';
 
 //import errorHandler from './middlewares/errorHandler.mjs';
@@ -11,6 +12,8 @@ import express from 'express';
 
 const app = express();
 app.use(express.json());
+
+app.use(router);
 
 const PORT = 3000;
 // app.use(logHandler);
