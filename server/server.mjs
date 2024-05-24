@@ -5,7 +5,7 @@ import errorHandler from './middlewares/errorHandler.mjs';
 import logHandler from './middlewares/logHandler.mjs';
 
 import blockchainRoutes from './routes/blockchainRoutes.mjs';
-import membersRoutes from './routes/membersRoutes.mjs';
+import memberRoutes from './src/routes/memberRoutes.mjs';
 
 import resourceNotFound from './utils/resourceNotFound.mjs';
 
@@ -15,7 +15,7 @@ app.use(express.json());
 // app.use(logHandler);
 
 app.use('/api/v1/blockchain', blockchainRoutes);
-// app.use('/api/v1/members', membersRoutes);
+app.use('/api/v1/members', memberRoutes);
 
 app.all('*', resourceNotFound);
 
