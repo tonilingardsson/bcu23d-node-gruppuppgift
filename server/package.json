@@ -14,5 +14,8 @@
   "description": "",
   "devDependencies": {
     "uuid": "^9.0.1"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
   }
 }

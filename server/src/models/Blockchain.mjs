@@ -1,7 +1,7 @@
 export default class Blockchain {
   constructor() {
     this.chain = [];
-    this.blockchainNodes = [];
+    this.memberNodes = [];
     this.pendingTransactions = [];
   }
 }
