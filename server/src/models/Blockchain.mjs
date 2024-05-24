@@ -58,4 +58,57 @@ export default class Blockchain {
   }
  }
 
+ validateChain(blockchain) {
+  let isValid = true;
+
+  for (let i = 1; i < blockchain.length; i++) {
+    const currBlock = blockchain[i];
+    const prevBlock = blockchain[i - 1];
+
+    const hash = this.hashBlock(
+      currBlock.timestamp,
+      prevBlock.currentBlockHash,
+      currBlock.data
+    );
+
+    if (hash !== currBlock.currBlockHash) isValid = false;
+    if (currBlock.prevBlockHash !== prevBlock.currBlockHash)
+      isValid = false;
+  }
+
+  return isValid;
+}
+
+proofOfWork(prevBlockHash, data) {
+  const lastBlock = this.getLastBlock();
+  let difficulty, hash, timestamp, nonce = 0;
+
+  do {
+    nonce++;
+    timestamp = Date.now();
+
+    difficulty = this.difficultyAdjustment(lastBlock, timestamp);
+    hash = this.hashBlock(
+      timestamp,
+      prevBlockHash,
+      data,
+      nonce,
+      difficulty
+    );
+  } while (hash.substring(0, difficulty) !== '0'.repeat(difficulty));
+
+  return { nonce, difficulty, timestamp };
+}
+
+difficultyAdjustment(lastBlock, timestamp) {
+  const MINE_RATE = process.env.MINE_RATE;
+  let { difficulty } = lastBlock;
+
+  if (difficulty < 1) return 1;
+
+  return timestamp - lastBlock.timestamp > MINE_RATE
+    ? +difficulty - 1
+    : +difficulty + 1;
+}
+
 
