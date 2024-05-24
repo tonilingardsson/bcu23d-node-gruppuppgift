@@ -10,4 +10,4 @@ class ResponseModel {
     }
 }
 
-export default ResponseModel
+export default ResponseModel;
