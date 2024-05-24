@@ -1,5 +1,6 @@
 import { transactionRepository } from "./transactionRepository.mjs";
-import TransactionsView from "../../../client/src/pages/TransactionView.mjs";
+// TODO: add TransactionsView.mjs otherwise error
+// import TransactionsView from "../../../client/src/pages/TransactionView.mjs";
 
 const presentTransactions = async (req, res) => {
     const transactions = await transactionRepository.get();

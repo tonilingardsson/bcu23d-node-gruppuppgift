@@ -8,9 +8,9 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.mjs",
-    "node-1": "nodemon --env-file=config/config.env server.mjs 5001 http://localhost:5001",
-    "node-2": "nodemon --env-file=config/config.env server.mjs 5002 http://localhost:5002"
+    "start": "node server.mjs",
+    "node-1": "nodemon --env-file=src/config/config.env server.mjs 5001 http://localhost:5001",
+    "node-2": "nodemon --env-file=src/config/config.env server.mjs 5002 http://localhost:5002"
   },
   "keywords": [],
   "author": "",
