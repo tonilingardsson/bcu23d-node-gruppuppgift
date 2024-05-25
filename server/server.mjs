@@ -6,7 +6,7 @@ import router from './src/routes/router.mjs'
 //import logHandler from './middlewares/logHandler.mjs';
 
 
-import blockchainRoutes from './routes/blockchainRoutes.mjs';
+import blockchainRoutes from '../server/src/routes/blockchainRoutes.mjs';
 import memberRoutes from './src/routes/memberRoutes.mjs';
 
 
