@@ -3,13 +3,13 @@ const transactions = [
         transactionId: 1, 
         amount: 100,
         sender: "Mikael Sundth",
-        recipients: "Jelena Cefalu"
+        recipient: "Jelena Cefalu"
     },
     {
         transactionId: 2, 
         amount: 50,
         sender: "Marcus Brielazka",
-        recipients: "Jelena Cefalu"
+        recipient: "Jelena Cefalu"
     }
 ];
 
