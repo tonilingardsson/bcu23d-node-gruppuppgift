@@ -22,6 +22,8 @@ const PORT = 3000;
 
 app.use('/api/v1/blockchain', blockchainRoutes);
 app.use('/api/v1/members', memberRoutes);
+app.use('/api/v1/transactions', transactionRouter);
+
 
 
 //app.all('*', resourceNotFound);
