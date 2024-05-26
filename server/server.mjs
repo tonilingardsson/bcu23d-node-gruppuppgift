@@ -1,5 +1,5 @@
 import express from 'express';
-import router from './src/routes/router.mjs'
+import transactionRouter from './src/routes/transactionRoutes.mjs'
 //import { PORT } from './startup.mjs';
 
 //import errorHandler from './middlewares/errorHandler.mjs';
@@ -15,7 +15,7 @@ import memberRoutes from './src/routes/memberRoutes.mjs';
 const app = express();
 app.use(express.json());
 
-app.use('/api/v1', router);
+app.use('/api/v1/transactions', transactionRouter);
 
 const PORT = 3000;
 // app.use(logHandler);
