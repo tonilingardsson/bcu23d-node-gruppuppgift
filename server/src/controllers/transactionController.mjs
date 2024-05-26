@@ -14,3 +14,23 @@ export const createTransaction = (req, res, next) => {
             })
         );
 };
+
+export const broadcastTransaction = (req, res, next) => {
+    const transaction = blockchain.createTransaction(
+        req.body.amount,
+        req.body.sender,
+        req.body.recipient
+    );
+
+    const blockIndex = blockchain.addTransaction(transaction);
+
+    blockchain.memberNodes.forEach(async (url) => {
+        await fetch(`${url}/api/v1/transaction/transaction`, {
+            method: 'POST',
+            body: JSON.stringify(transaction),
+            headers: {
+                "Content-Type": "application/json",
+            }
+        });
+    });
+};
