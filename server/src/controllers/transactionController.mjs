@@ -2,9 +2,10 @@ import { blockchain } from "../../startup.mjs";
 
 export const createTransaction = (req, res, next) => {
     const transaction = req.body;
+    console.log(transaction);
+
 
     const blockIndex = blockchain.addTransaction(transaction);
-
     res.status(201).json({
         status: true,
         statusCode: 201,
@@ -13,12 +14,13 @@ export const createTransaction = (req, res, next) => {
 };
 
 export const broadcastTransaction = (req, res, next) => {
+
     const transaction = blockchain.createTransaction(
         req.body.amount,
         req.body.sender,
         req.body.recipient
     );
-
+    console.log(transaction);
     const blockIndex = blockchain.addTransaction(transaction);
 
     blockchain.memberNodes.forEach(async (url) => {
@@ -27,7 +29,7 @@ export const broadcastTransaction = (req, res, next) => {
             body: JSON.stringify(transaction),
             headers: {
                 "Content-Type": "application/json",
-            }
+            },
         });
     });
 

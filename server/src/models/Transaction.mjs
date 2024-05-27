@@ -1,6 +1,6 @@
 import { v4 as uuid4 } from 'uuid';
 export default class Transaction {
-  constructror(amount, sender, recipient) {
+  constructor(amount, sender, recipient) {
     this.amount = amount;
     this.sender = sender;
     this.recipient = recipient;
