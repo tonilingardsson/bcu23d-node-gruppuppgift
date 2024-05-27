@@ -35,8 +35,8 @@ app.use('/api/v1/transactions', transactionRoutes);
 // app.use(router)
 
 
-app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../frontend/build', 'index.html')); // Fallback to index.html
-});
+// app.get('*', (req, res) => {
+//     res.sendFile(path.resolve(__dirname, '../frontend/build', 'index.html')); // Fallback to index.html
+// });
 
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}...`));
