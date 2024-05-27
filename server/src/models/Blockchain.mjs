@@ -48,15 +48,17 @@ export default class Blockchain {
     return this.chain.at(-1);
   }
 
-  hashBlock(timestamp, prevBlockHash, currBlockHash, nonce, difficulty) {
+  hashBlock(timestamp, prevBlockHash, currentBlockData, nonce, difficulty) {
     const stringToHash =
       timestamp.toString() +
       timestamp.toString() +
       prevBlockHash +
-      JSON.stringify(currBlockHash) +
+      JSON.stringify(currentBlockData) +
       nonce +
       difficulty;
     const hash = createHash(stringToHash);
+
+    return hash;
   }
 
   validateChain(blockchain) {
@@ -104,7 +106,7 @@ export default class Blockchain {
     if (difficulty < 1) return 1;
 
     return timestamp - lastBlock.timestamp > MINE_RATE
-      ? +difficulty - 1
-      : +difficulty + 1;
+      ? +difficulty + 1
+      : +difficulty - 1;
   }
 }

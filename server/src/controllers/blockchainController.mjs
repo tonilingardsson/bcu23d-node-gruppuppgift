@@ -8,7 +8,7 @@ export const getBlockchain = async (req, res, next) => {
 
 export const createBlock = async (req, res, next) => {
   const lastBlock = blockchain.getLastBlock();
-  const data = req.body;
+  const data = blockchain.pendingTransactions;
   const { nonce, difficulty, timestamp } = blockchain.proofOfWork(
     lastBlock.currBlockHash,
     data
@@ -31,7 +31,7 @@ export const createBlock = async (req, res, next) => {
     difficulty
   );
 
-  blockchain.memberNodes.forEach(async url => {
+  blockchain.memberNodes.forEach(async (url) => {
     const body = { block };
     await fetch(`${url}/api/v1/blockchain/block/broadcast`, {
       method: 'POST',
@@ -60,14 +60,14 @@ export const createBlock = async (req, res, next) => {
     }
   );
 
-  res.status(201).json(new ResponseModel({
+  res.status(200).json(new ResponseModel({
     success: true,
     data: { message: 'Block created and broadcasted', block },
   }));
 };
 
 export const updateChain = (req, res, next) => {
-  const block = req.body;
+  const block = req.body.block;
   const lastBlock = blockchain.getLastBlock();
   const hash = lastBlock.currBlockHash === block.prevBlockHash;
   const index = lastBlock.blockIndex + 1 === block.blockIndex;
@@ -97,7 +97,7 @@ export const syncChain = (req, res, next) => {
   let maxLength = currLength;
   let longestChain = null;
 
-  blockchain.memberNodes.forEach(async node => {
+  blockchain.memberNodes.forEach(async (node) => {
     const response = await fetch(`${node}/api/v1/blockchain`);
     if (response.ok) {
       const result = await response.json();
