@@ -1,3 +1,5 @@
+import BlockView from "./BlocksView";
+
 export const Home = () => {
   return (
     <>
