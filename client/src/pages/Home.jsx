@@ -8,6 +8,7 @@ export const Home = () => {
       
         <p>Vote Ledger is a decentralized voting application that.</p>
         <p>uses the StateLayer blockchain to store votes.</p>
+        <BlockView/>
       </main>
     </>
   );
