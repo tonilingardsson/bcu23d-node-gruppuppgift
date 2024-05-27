@@ -1,6 +1,6 @@
 import express from 'express'
 import presentTransactions from '../controllers/presentTransactions.mjs';
-import { broadcastTransaction, createTransaction } from '../controllers/transaction-controller.mjs';
+import { broadcastTransaction, createTransaction } from '../controllers/transactionController.mjs';
 
 const router = express.Router();
 
