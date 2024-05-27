@@ -2,7 +2,7 @@ import express from 'express';
 import transactionRoutes from './src/routes/transactionRoutes.mjs'
 
 // import router from './src/routes/router.mjs'
-import presentTransactions from './src/controllers/presentTransactions.mjs';
+// import presentTransactions from './src/controllers/presentTransactions.mjs';
 
 //import errorHandler from './middlewares/errorHandler.mjs';
 //import logHandler from './middlewares/logHandler.mjs';
