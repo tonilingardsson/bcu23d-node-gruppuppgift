@@ -1,10 +1,12 @@
 import { transactionRepository } from "./transactionRepository.mjs";
-import TransactionsView from "../../../client/src/pages/TransactionView.mjs";
+import React from 'react';
+import ReactDOMServer from 'react-dom/server';
+import TransactionsView from "../../../client/src/pages/transactionView.jsx";
 
 const presentTransactions = async (req, res) => {
     const transactions = await transactionRepository.get();
-    console.log(req.params);
-    res.send(TransactionsView(transactions))
+    const html = ReactDOMServer.renderToString(<TransactionsView transactions={transactions} />);
+    res.send(`<!DOCTYPE html>${html}`);
 };
 
 export default presentTransactions;

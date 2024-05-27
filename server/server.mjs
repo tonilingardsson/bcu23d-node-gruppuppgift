@@ -12,8 +12,10 @@ import router from './src/routes/router.mjs'
 
 const app = express();
 app.use(express.json());
+app.use(express.static(path.join(__dirname, '../client/build'))); // Serve static files
 
-app.use('/api/v1', router);
+
+app.use('/api/v1/transactions', router);
 
 const PORT = 3000;
 // app.use(logHandler);
@@ -24,5 +26,8 @@ const PORT = 3000;
 //app.all('*', resourceNotFound);
 
 //app.use(errorHandler);
+app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../frontend/build', 'index.html')); // Fallback to index.html
+});
 
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}...`));
