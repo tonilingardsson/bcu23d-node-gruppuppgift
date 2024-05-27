@@ -1,11 +1,14 @@
-import { transactionRepository } from "./transactionRepository.mjs";
-// TODO: add TransactionsView.mjs otherwise error
-// import TransactionsView from "../../../client/src/pages/TransactionView.mjs";
+import view from "../../../client/src/pages/views/index.mjs";
+import { transactionReposotory } from "./transactionsReposotory.mjs";
 
-const presentTransactions = async (req, res) => {
-    const transactions = await transactionRepository.get();
-    console.log(req.params);
-    res.send(TransactionsView(transactions))
-};
+const presentTransactions = async(req, res) => {
+    const transactions = await transactionReposotory.get();
+    console.log(transactions);
+    res.send(view(transactions))
+}
+ 
 
-export default presentTransactions;
+
+export default presentTransactions; 
+
+   
