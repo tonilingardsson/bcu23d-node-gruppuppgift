@@ -1,5 +1,4 @@
 import { blockchain } from "../../startup.mjs";
-import ResponseModel from "../utilities/ResponseModel.mjs";
 
 export const createTransaction = (req, res, next) => {
     const transaction = req.body;
@@ -23,12 +22,22 @@ export const broadcastTransaction = (req, res, next) => {
     const blockIndex = blockchain.addTransaction(transaction);
 
     blockchain.memberNodes.forEach(async (url) => {
-        await fetch(`${url}/api/v1/transaction/transaction`, {
+        await fetch(`${url}/api/v1/transactions/transaction`, {
             method: 'POST',
             body: JSON.stringify(transaction),
             headers: {
                 "Content-Type": "application/json",
             }
         });
+    });
+
+    res.status(201).json({
+        success: true,
+        statusCode: 201,
+        data: {
+            message: 'Transaction created and sent to the network',
+            transaction,
+            blockIndex,
+        },
     });
 };

@@ -1,5 +1,5 @@
 import express from 'express';
-import transactionRouter from './src/routes/transactionRoutes.mjs'
+import transactionRoutes from './src/routes/transactionRoutes.mjs'
 
 //import errorHandler from './middlewares/errorHandler.mjs';
 //import logHandler from './middlewares/logHandler.mjs';
@@ -20,7 +20,7 @@ const PORT = process.argv[2];
 
 app.use('/api/v1/blockchain', blockchainRoutes);
 app.use('/api/v1/members', memberRoutes);
-app.use('/api/v1/transactions', transactionRouter);
+app.use('/api/v1/transactions', transactionRoutes);
 
 
 
