@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const FetchBlockchainButton = () => {
     const [blockchain, setBlockchain] = useState([]);
-    const [block, setBlock] = useState(null);
+    const [focusedBlock, setFocusedBlock] = useState(null);
     const [error, setError] = useState(null);
     const [identifier, setIdentifier] = useState('');
+    const [scrollIndex, setScrollIndex] = useState(0);
 
     const fetchBlockchain = async () => {
         try {
             const response = await fetch('http://localhost:3001/api/v1/blockchain');
-
             const data = await response.json();
 
             if (response.ok && data.success) {
                 setBlockchain(data.data.chain);
-                setBlock(null);
+                setFocusedBlock(null); // Reset focused block when fetching the full blockchain
             } else {
                 throw new Error(`Failed to fetch blockchain: ${data.error || 'Unknown error'}`);
             }
@@ -26,21 +26,47 @@ const FetchBlockchainButton = () => {
     const fetchBlock = async () => {
         try {
             const response = await fetch(`http://localhost:3001/api/v1/blockchain/block/${identifier}`);
-
             const data = await response.json();
 
             if (response.ok && data.success) {
-                setBlock(data.data);
+                setFocusedBlock(data.data);
             } else {
                 throw new Error(`Failed to fetch block: ${data.error || 'Unknown error'}`);
             }
         } catch (err) {
+            console.error('Error fetching block:', err.message);
             setError(err.message);
         }
     };
 
+    useEffect(() => {
+        const handleScroll = (e) => {
+            const { scrollTop, scrollHeight, clientHeight } = e.target;
+            const currentIndex = Math.floor((scrollTop / (scrollHeight - clientHeight)) * blockchain.length);
+
+            if (currentIndex !== scrollIndex) {
+                setScrollIndex(currentIndex);
+                if (focusedBlock) {
+                    const newFocusedBlock = blockchain[currentIndex];
+                    setFocusedBlock(newFocusedBlock);
+                }
+            }
+        };
+
+        const blockchainListElement = document.querySelector('.blockchain-list');
+        if (blockchainListElement) {
+            blockchainListElement.addEventListener('scroll', handleScroll);
+        }
+
+        return () => {
+            if (blockchainListElement) {
+                blockchainListElement.removeEventListener('scroll', handleScroll);
+            }
+        };
+    }, [blockchain, focusedBlock, scrollIndex]);
+
     return (
-        <div className={`blockchain-container ${block ? 'block-focused' : ''}`}>
+        <div className={`blockchain-container ${focusedBlock ? 'block-focused' : ''}`}>
             <div className="controls">
                 <button onClick={fetchBlockchain}>Fetch Blockchain</button>
                 <input
@@ -59,29 +85,31 @@ const FetchBlockchainButton = () => {
                     ) : (
                         <ul>
                             {blockchain.map((blockItem, index) => (
-                                <li key={index} className="block-item">
-                                    <p>Index: {blockItem.blockIndex}</p>
-                                    <p>Timestamp: {new Date(blockItem.timestamp).toLocaleString()}</p>
-                                    <p>Previous Hash: {blockItem.prevBlockHash}</p>
-                                    <p>Hash: {blockItem.currBlockHash}</p>
-                                    <p>Nonce: {blockItem.nonce}</p>
-                                    <p>Difficulty: {blockItem.difficulty}</p>
-                                    <p>Transactions: {JSON.stringify(blockItem.data)}</p>
-                                </li>
+                                index !== blockchain.indexOf(focusedBlock) && (
+                                    <li key={index} className="block-item">
+                                        <p>Index: {blockItem.blockIndex}</p>
+                                        <p>Timestamp: {new Date(blockItem.timestamp).toLocaleString()}</p>
+                                        <p>Previous Hash: {blockItem.prevBlockHash}</p>
+                                        <p>Hash: {blockItem.currBlockHash}</p>
+                                        <p>Nonce: {blockItem.nonce}</p>
+                                        <p>Difficulty: {blockItem.difficulty}</p>
+                                        <p>Transactions: {JSON.stringify(blockItem.data)}</p>
+                                    </li>
+                                )
                             ))}
                         </ul>
                     )}
                 </div>
-                {block && (
+                {focusedBlock && (
                     <div className="block-focused-view">
                         <div className="block-item focused">
-                            <p>Index: {block.blockIndex}</p>
-                            <p>Timestamp: {new Date(block.timestamp).toLocaleString()}</p>
-                            <p>Previous Hash: {block.prevBlockHash}</p>
-                            <p>Hash: {block.currBlockHash}</p>
-                            <p>Nonce: {block.nonce}</p>
-                            <p>Difficulty: {block.difficulty}</p>
-                            <p>Transactions: {JSON.stringify(block.data)}</p>
+                            <p>Index: {focusedBlock.blockIndex}</p>
+                            <p>Timestamp: {new Date(focusedBlock.timestamp).toLocaleString()}</p>
+                            <p>Previous Hash: {focusedBlock.prevBlockHash}</p>
+                            <p>Hash: {focusedBlock.currBlockHash}</p>
+                            <p>Nonce: {focusedBlock.nonce}</p>
+                            <p>Difficulty: {focusedBlock.difficulty}</p>
+                            <p>Transactions: {JSON.stringify(focusedBlock.data)}</p>
                         </div>
                     </div>
                 )}
