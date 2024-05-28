@@ -14,7 +14,7 @@ const FetchBlockchainButton = () => {
 
             if (response.ok && data.success) {
                 setBlockchain(data.data.chain);
-                setBlock(null); // Reset block when fetching the full blockchain
+                setBlock(null);
             } else {
                 throw new Error(`Failed to fetch blockchain: ${data.error || 'Unknown error'}`);
             }
