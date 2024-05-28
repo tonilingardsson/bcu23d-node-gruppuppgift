@@ -2,13 +2,13 @@ import React from 'react';
 
 const BlockItem = ({ block }) => (
     <li>
-        <p>Index: {block.index}</p>
+        <p>Index: {block.blockIndex}</p>
         <p>Timestamp: {new Date(block.timestamp).toLocaleString()}</p>
-        <p>Previous Hash: {block.previousHash}</p>
-        <p>Hash: {block.hash}</p>
+        <p>Previous Hash: {block.prevBlockHash}</p>
+        <p>Hash: {block.currBlockHash}</p>
         <p>Nonce: {block.nonce}</p>
         <p>Difficulty: {block.difficulty}</p>
-        <p>Transactions: {JSON.stringify(block.transactions)}</p>
+        <p>Transactions: {JSON.stringify(block.data)}</p>
     </li>
 );
 

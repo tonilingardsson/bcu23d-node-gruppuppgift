@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import InputField from './InputField';
-import BlockchainList from './BlockchainList';
 
 const TransactionForm = () => {
     const [amount, setAmount] = useState('');
@@ -68,8 +67,6 @@ const TransactionForm = () => {
                 </form>
                 {message && <p>{message}</p>}
             </div>
-
-            <BlockchainList />
         </>
     );
 };

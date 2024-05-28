@@ -12,10 +12,10 @@ const BlockchainList = () => {
                 throw new Error('Failed to fetch blockchain');
             }
             const data = await response.json();
-            if (Array.isArray(data)) {
-                setBlockchain(data);
+            if (data.success && Array.isArray(data.data.chain)) {
+                setBlockchain(data.data.chain);
             } else {
-                throw new Error('Fetched data is not an array');
+                throw new Error('Fetched data is not an array or success is false');
             }
         } catch (err) {
             setError(err.message);
@@ -28,7 +28,7 @@ const BlockchainList = () => {
 
     return (
         <div>
-          <h1 className='separator'>=====================================</h1>
+            <h1 className='separator'>=====================================</h1>
             <h2>Blockchain</h2>
             {error && <p>Error: {error}</p>}
             {blockchain.length === 0 ? (

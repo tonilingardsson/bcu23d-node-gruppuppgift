@@ -4,11 +4,11 @@ import { Home } from './pages/Home';
 import { Login } from './pages/Login';
 import { NotFound } from './pages/routes/NotFound';
 import TransactionForm from './pages/TransactionForm/TransactionForm';
-
+import BlockchainPage from './pages/blockchainFetch/BlockchainPage';
 
 export const router = createBrowserRouter([
   {
-    path:'/',
+    path: '/',
     element: <Layout />,
     errorElement: <NotFound />,
     children: [
@@ -21,8 +21,12 @@ export const router = createBrowserRouter([
         element: <TransactionForm />,
       },
       {
-        path: 'Login',
+        path: 'login',
         element: <Login />,
+      },
+      {
+        path: 'blockchain',
+        element: <BlockchainPage />,
       },
     ],
   },

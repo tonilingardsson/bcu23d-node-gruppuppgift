@@ -15,6 +15,7 @@ export const Header = () => {
             <li><Link to="/transaction-form">TransactionForm</Link></li>
             <li><Link to="/login">Login</Link></li>
             <li><Link to="/register">Register</Link></li>
+            <li><Link to="/blockchain">Blockchain</Link></li> {/* Add this link */}
           </ul>
         </nav>
         <ThemeToggle />
