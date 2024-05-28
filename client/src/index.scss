@@ -1,5 +1,3 @@
-// index.scss
-
 // Abstracts (variables, functions, mixins, placeholders, etc.)
 @import './styles/abstract/colors.scss';
 @import './styles/abstract/typography.scss';
@@ -11,9 +9,9 @@
 
 //Layout
 @import './styles/layout/header.scss';
-@import './styles/layout/ThemeToggle.scss'
-
-// Components
+@import './styles/layout/ThemeToggle.scss';
 
 // Pages
+@import './styles/layout/Blockchain.scss';
+@import './styles/layout/FetchBlockChainButton.scss';
 
