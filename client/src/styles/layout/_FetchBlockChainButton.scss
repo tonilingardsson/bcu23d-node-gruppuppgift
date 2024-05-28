@@ -1,5 +1,32 @@
 .blockchain-container {
   padding: pxToRem(20);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.controls {
+  margin-bottom: pxToRem(20);
+  display: flex;
+  gap: pxToRem(10);
+}
+
+.blockchain-view {
+  display: flex;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.blockchain-list {
+  flex: 1;
+  overflow-y: auto;
+  max-height: 80vh;
+  transition: flex 0.3s ease;
+}
+
+.blockchain-list ul {
+  list-style-type: none;
+  padding: 0;
 }
 
 .block-item {
@@ -27,4 +54,28 @@ button {
 
 button:hover {
   background-color: #0056b3;
+}
+
+// Shrink the blockchain list to take up only 20% of the screen
+.block-focused .blockchain-list {
+  flex: 0.2;
+}
+
+// Expanding focused block to take up 80% of the screen */
+.block-focused .block-focused-view {
+  flex: 0.8; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.block-focused-view {
+  flex: 0; /* Initially take up no space */
+  display: none; /* Initially hidden */
+}
+
+.block-item.focused {
+  background-color: gold;
+  border: pxToRem(1) solid silver;
+  box-shadow: 0 0 pxToRem(10) rgba(192, 192, 192, 0.5);
 }

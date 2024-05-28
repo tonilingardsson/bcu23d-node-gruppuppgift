@@ -9,18 +9,16 @@ const FetchBlockchainButton = () => {
     const fetchBlockchain = async () => {
         try {
             const response = await fetch('http://localhost:3001/api/v1/blockchain');
-            console.log('Response:', response);
 
             const data = await response.json();
-            console.log('Parsed JSON:', data);
 
             if (response.ok && data.success) {
                 setBlockchain(data.data.chain);
+                setBlock(null); // Reset block when fetching the full blockchain
             } else {
                 throw new Error(`Failed to fetch blockchain: ${data.error || 'Unknown error'}`);
             }
         } catch (err) {
-            console.error('Error fetching blockchain:', err.message);
             setError(err.message);
         }
     };
@@ -28,10 +26,8 @@ const FetchBlockchainButton = () => {
     const fetchBlock = async () => {
         try {
             const response = await fetch(`http://localhost:3001/api/v1/blockchain/block/${identifier}`);
-            console.log('Response:', response);
 
             const data = await response.json();
-            console.log('Parsed JSON:', data);
 
             if (response.ok && data.success) {
                 setBlock(data.data);
@@ -39,34 +35,14 @@ const FetchBlockchainButton = () => {
                 throw new Error(`Failed to fetch block: ${data.error || 'Unknown error'}`);
             }
         } catch (err) {
-            console.error('Error fetching block:', err.message);
             setError(err.message);
         }
     };
 
     return (
-        <div className="blockchain-container">
-            <button onClick={fetchBlockchain}>Fetch Blockchain</button>
-            {error && <p>Error: {error}</p>}
-            {blockchain.length === 0 ? (
-                <p>No blocks in the blockchain.</p>
-            ) : (
-                <ul>
-                    {blockchain.map((block, index) => (
-                        <li key={index} className="block-item">
-                            <p>Index: {block.blockIndex}</p>
-                            <p>Timestamp: {new Date(block.timestamp).toLocaleString()}</p>
-                            <p>Previous Hash: {block.prevBlockHash}</p>
-                            <p>Hash: {block.currBlockHash}</p>
-                            <p>Nonce: {block.nonce}</p>
-                            <p>Difficulty: {block.difficulty}</p>
-                            <p>Transactions: {JSON.stringify(block.data)}</p>
-                        </li>
-                    ))}
-                </ul>
-            )}
-
-            <div className="fetch-block-container">
+        <div className={`blockchain-container ${block ? 'block-focused' : ''}`}>
+            <div className="controls">
+                <button onClick={fetchBlockchain}>Fetch Blockchain</button>
                 <input
                     type="text"
                     value={identifier}
@@ -74,15 +50,39 @@ const FetchBlockchainButton = () => {
                     placeholder="Enter block index or hash"
                 />
                 <button onClick={fetchBlock}>Fetch Block</button>
+            </div>
+            {error && <p>Error: {error}</p>}
+            <div className="blockchain-view">
+                <div className="blockchain-list">
+                    {blockchain.length === 0 ? (
+                        <p>No blocks in the blockchain.</p>
+                    ) : (
+                        <ul>
+                            {blockchain.map((blockItem, index) => (
+                                <li key={index} className="block-item">
+                                    <p>Index: {blockItem.blockIndex}</p>
+                                    <p>Timestamp: {new Date(blockItem.timestamp).toLocaleString()}</p>
+                                    <p>Previous Hash: {blockItem.prevBlockHash}</p>
+                                    <p>Hash: {blockItem.currBlockHash}</p>
+                                    <p>Nonce: {blockItem.nonce}</p>
+                                    <p>Difficulty: {blockItem.difficulty}</p>
+                                    <p>Transactions: {JSON.stringify(blockItem.data)}</p>
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+                </div>
                 {block && (
-                    <div className="block-item">
-                        <p>Index: {block.blockIndex}</p>
-                        <p>Timestamp: {new Date(block.timestamp).toLocaleString()}</p>
-                        <p>Previous Hash: {block.prevBlockHash}</p>
-                        <p>Hash: {block.currBlockHash}</p>
-                        <p>Nonce: {block.nonce}</p>
-                        <p>Difficulty: {block.difficulty}</p>
-                        <p>Transactions: {JSON.stringify(block.data)}</p>
+                    <div className="block-focused-view">
+                        <div className="block-item focused">
+                            <p>Index: {block.blockIndex}</p>
+                            <p>Timestamp: {new Date(block.timestamp).toLocaleString()}</p>
+                            <p>Previous Hash: {block.prevBlockHash}</p>
+                            <p>Hash: {block.currBlockHash}</p>
+                            <p>Nonce: {block.nonce}</p>
+                            <p>Difficulty: {block.difficulty}</p>
+                            <p>Transactions: {JSON.stringify(block.data)}</p>
+                        </div>
                     </div>
                 )}
             </div>
