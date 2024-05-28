@@ -110,6 +110,7 @@ const FetchBlockchainButton = () => {
                             <p>Nonce: {focusedBlock.nonce}</p>
                             <p>Difficulty: {focusedBlock.difficulty}</p>
                             <p>Transactions: {JSON.stringify(focusedBlock.data)}</p>
+                           
                         </div>
                     </div>
                 )}
