@@ -17,6 +17,30 @@ export const getBlockchain = async (req, res, next) => {
   }
 };
 
+export const getBlockByIndexOrHash = async (req, res, next) => {
+  const { identifier } = req.params;
+  console.log('getBlockByIndexOrHash called with identifier:', identifier);
+
+  try {
+      let block;
+      if (!isNaN(identifier)) {
+          const index = parseInt(identifier, 10);
+          block = blockchain.chain.find(b => b.blockIndex === index);
+      } else {
+          block = blockchain.chain.find(b => b.currBlockHash === identifier);
+      }
+
+      if (!block) {
+          return res.status(404).json(new ResponseModel({ statusCode: 404, data: null, error: 'Block not found' }));
+      }
+
+      res.status(200).json(new ResponseModel({ statusCode: 200, data: block }));
+  } catch (error) {
+      console.error('Error fetching block:', error);
+      res.status(500).json(new ResponseModel({ statusCode: 500, error: error.message }));
+  }
+};
+
 export const createBlock = async (req, res, next) => {
   const lastBlock = blockchain.getLastBlock();
   const data = blockchain.pendingTransactions;
