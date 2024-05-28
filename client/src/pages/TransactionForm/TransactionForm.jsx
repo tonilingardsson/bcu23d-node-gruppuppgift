@@ -37,6 +37,27 @@ const TransactionForm = () => {
         }
     };
 
+    const handleMineBlock = async () => {
+        try {
+            const response = await fetch('http://localhost:3001/api/v1/blockchain/mine', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            const result = await response.json();
+
+            if (response.ok && result.success) {
+                setMessage('Block mined successfully.');
+            } else {
+                setMessage(`Error: ${result.message}`);
+            }
+        } catch (error) {
+            setMessage(`Error: ${error.message}`);
+        }
+    };
+
     return (
         <>
             <div>
@@ -65,6 +86,7 @@ const TransactionForm = () => {
                     />
                     <button type="submit">Send Transaction</button>
                 </form>
+                <button onClick={handleMineBlock}>Mine Block</button>
                 {message && <p>{message}</p>}
             </div>
         </>
