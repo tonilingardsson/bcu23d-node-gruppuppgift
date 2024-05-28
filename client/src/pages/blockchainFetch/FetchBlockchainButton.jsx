@@ -24,7 +24,7 @@ const FetchBlockchainButton = () => {
     };
 
     return (
-        <div>
+        <div className="blockchain-container">
             <button onClick={fetchBlockchain}>Fetch Blockchain</button>
             {error && <p>Error: {error}</p>}
             {blockchain.length === 0 ? (
@@ -32,7 +32,7 @@ const FetchBlockchainButton = () => {
             ) : (
                 <ul>
                     {blockchain.map((block, index) => (
-                        <li key={index}>
+                        <li key={index} className="block-item">
                             <p>Index: {block.blockIndex}</p>
                             <p>Timestamp: {new Date(block.timestamp).toLocaleString()}</p>
                             <p>Previous Hash: {block.prevBlockHash}</p>

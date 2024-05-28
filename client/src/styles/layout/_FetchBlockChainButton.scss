@@ -1,0 +1,30 @@
+.blockchain-container {
+  padding: pxToRem(20);
+}
+
+.block-item {
+  border: pxToRem(1) solid #ddd;
+  padding: pxToRem(15);
+  margin: pxToRem(10) 0;
+  color: var(--font-color);
+  background-color: var(--card-color);
+  border-radius: pxToRem(5);
+  box-shadow: 0 pxToRem(2) pxToRem(4) rgba(0, 0, 0, 0.1);
+}
+
+.block-item p {
+  margin: pxToRem(5) 0;
+}
+
+button {
+  padding: pxToRem(10) pxToRem(20);
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: pxToRem(5);
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
