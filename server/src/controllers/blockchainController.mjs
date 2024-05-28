@@ -3,7 +3,18 @@ import ErrorResponse from "../utilities/ErrorResponse.mjs";
 import ResponseModel from "../utilities/ResponseModel.mjs";
 
 export const getBlockchain = async (req, res, next) => {
-  res.status(200).json(new ResponseModel({ success: true, data: blockchain }));
+  console.log('getBlockchain called');
+  try {
+      if (!blockchain || !blockchain.chain) {
+          console.log('Blockchain not found or invalid');
+          return res.status(404).json(new ResponseModel({ statusCode: 404, data: null, error: 'Blockchain not found or invalid' }));
+      }
+      console.log('Blockchain found:', blockchain.chain);
+      res.status(200).json(new ResponseModel({ statusCode: 200, data: { chain: blockchain.chain } }));
+  } catch (error) {
+      console.error('Error fetching blockchain:', error);
+      res.status(500).json(new ResponseModel({ statusCode: 500, error: error.message }));
+  }
 };
 
 export const createBlock = async (req, res, next) => {
