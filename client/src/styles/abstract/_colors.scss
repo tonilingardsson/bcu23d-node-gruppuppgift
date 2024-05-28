@@ -7,21 +7,27 @@
 $light-background-color: #7f7f7f;       // Correct color
 $light-primary-color: #3498db;          // Correct color
 $light-secondary-color: lightgreen;          //! Decide or remove
-$light-button-primary-color: #262626;   // Correct color
+$light-button-primary-color: #d87946;   // Correct color
+$light-button-secondary-color: green; //! Decide or remove
 $light-button-text-color: #d87946;      // Correct color
 $light-border-color: brown;             //! Decide or remove   
+$light-border-color-secondary: yellow; //! Decide or remove
 $light-card-color: lightgrey;           //! Decide or remove 
 $light-font-color: #000000;             // Correct color
+$light-focus-color: #d87946;
 
 // Dark theme colors
 $dark-background-color: black;          // Correct color
 $dark-primary-color: white;
 $dark-secondary-color: green;
 $dark-button-primary-color: darkorange;
+$dark-button-secondary-color: grey;
 $dark-button-text-color: black;
-$dark-border-color: darkbrown;
+$dark-border-color: brown;
+$dark-border-color-secondary: white;
 $dark-card-color: grey;
 $dark-font-color: white;                // Correct color
+$dark-focus-color: #d87946;
 
 // CSS variables defined 
 :root {
@@ -29,10 +35,13 @@ $dark-font-color: white;                // Correct color
   --primary-color: #{$light-primary-color};
   --secondary-color: #{$light-secondary-color};
   --button-primary-color: #{$light-button-primary-color};
+  --button-secondary-color: #{$light-button-secondary-color};
   --button-text-color: #{$light-button-text-color};
   --border-color: #{$light-border-color};
+  --border-color-secondary: #{$light-border-color-secondary};
   --card-color: #{$light-card-color};
   --font-color: #{$light-font-color};
+  --focus-color: #{$light-focus-color};
 }
 
 [data-theme='dark'] {
@@ -40,8 +49,11 @@ $dark-font-color: white;                // Correct color
   --primary-color: #{$dark-primary-color};
   --secondary-color: #{$dark-secondary-color};
   --button-primary-color: #{$dark-button-primary-color};
+  --button-secondary-color: #{$dark-button-secondary-color};
   --button-text-color: #{$dark-button-text-color};
   --border-color: #{$dark-border-color};
+  --border-color-secondary: #{$dark-border-color-secondary};
   --card-color: #{$dark-card-color};
   --font-color: #{$dark-font-color};
+  --focus-color: #{$dark-focus-color};
 }

@@ -20,7 +20,7 @@
 .blockchain-list {
     flex: 1;
     overflow-y: auto;
-    max-height: 80vh;
+    max-height: 70vh;
     transition: flex 0.3s ease;
 }
 
@@ -30,8 +30,8 @@
 }
 
 .block-item {
-    border: pxToRem(1) solid #ddd;
-    padding: pxToRem(15);
+    border: pxToRem(2) solid var(--border-color);
+    padding: pxToRem(5);
     margin: pxToRem(10) 0;
     color: var(--font-color);
     background-color: var(--card-color);
@@ -45,15 +45,15 @@
 
 button {
     padding: pxToRem(10) pxToRem(20);
-    background-color: #007bff;
-    color: white;
+    background-color: var(--button-primary-color);
+    color: var(--button);
     border: none;
     border-radius: pxToRem(5);
     cursor: pointer;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: var(--button-secondary-color);
 }
 
 // Shrink the blockchain list to take up only 20% of the screen
@@ -63,7 +63,8 @@ button:hover {
 
 // Expanding focused block to take up 80% of the screen
 .block-focused .block-focused-view {
-    flex: 0.8;
+    flex: 0.8vw;
+    margin: pxToRem(20);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -75,8 +76,8 @@ button:hover {
 }
 
 .block-item.focused {
-    background-color: rgb(255, 166, 0);
-    border: pxToRem(1) solid silver;
+    background-color: var(--focus-color);
+    border: pxToRem(5) solid var(--border-color-secondary);
     box-shadow: 0 0 pxToRem(10) rgba(192, 192, 192, 0.5);
     transition: all 0.3s ease;
 }
