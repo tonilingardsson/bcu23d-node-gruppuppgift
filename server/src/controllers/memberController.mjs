@@ -7,6 +7,7 @@ export const listMembers = (req, res, next) => {
 
 export const registerMember = (req, res, next) => {
     const member = req.body;
+    console.log();
 
     if (blockchain.memberNodes.indexOf(member.nodeUrl) === -1 && blockchain.nodeUrl !== member.nodeUrl) {
         blockchain.memberNodes.push(member.nodeUrl);
