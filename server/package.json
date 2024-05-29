@@ -8,11 +8,11 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node --env-file=src/config/config.env server.mjs 3001 http://localhost:3001",
-    "dev": "nodemon --env-file=src/config/config.env server.mjs 3001 http://localhost:3001",
-    "node-1": "nodemon --env-file=src/config/config.env server.mjs 3001 http://localhost:3001",
-    "node-2": "nodemon --env-file=src/config/config.env server.mjs 3002 http://localhost:3002",
-    "node-3": "nodemon --env-file=src/config/config.env server.mjs 3003 http://localhost:3003"
+    "start": "node --env-file=src/config/config.env server.mjs 3000 http://localhost:3000",
+    "dev": "nodemon --env-file=src/config/config.env server.mjs 3001 http://localhost:3000",
+    "node-1": "nodemon --env-file=src/config/config.env server.mjs 3001 http://localhost:3000",
+    "node-2": "nodemon --env-file=src/config/config.env server.mjs 3002 http://localhost:3001",
+    "node-3": "nodemon --env-file=src/config/config.env server.mjs 3003 http://localhost:3002"
   },
   "keywords": [],
   "author": "",

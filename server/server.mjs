@@ -7,7 +7,7 @@ import memberRoutes from './src/routes/memberRoutes.mjs';
 const app = express();
 app.use(express.json());
 app.use(cors()); // Enable CORS for all requests
-
+//ports 3000/ 3001/ 3002
 const PORT = process.argv[2];
 
 app.use('/api/v1/blockchain', blockchainRoutes);
