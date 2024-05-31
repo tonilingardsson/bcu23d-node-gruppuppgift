@@ -4,32 +4,32 @@
 
 //! I might have added more color defaults than necessary. remove if not used.
 // Light theme colors - Default theme
-$light-background-color: #7f7f7f;       // Correct color
-$light-primary-color: #3498db;          // Correct color
-$light-secondary-color: lightgreen;          //! Decide or remove
-$light-button-primary-color: #d87946;   // Correct color
-$light-button-secondary-color: green; //! Decide or remove
-$light-button-text-color: #d87946;      // Correct color
-$light-border-color: brown;             //! Decide or remove   
-$light-border-color-secondary: yellow; //! Decide or remove
-$light-card-color: lightgrey;           //! Decide or remove 
-$light-font-color: #000000;             // Correct color
-$light-focus-color: #d87946;
+$light-background-color: #7f7f7f; // Correct color
+$light-primary-color: darkorange; // Correct color
+$light-secondary-color: black; //! Decide or remove
+$light-button-primary-color: darkorange; // Correct color
+$light-button-secondary-color: #eeff5f; //! Decide or remove
+$light-button-text-color: black; // Correct color
+$light-border-color: #eeff5f; //! Decide or remove
+$light-border-color-secondary: darkorange; //! Decide or remove
+$light-card-color: lightgrey; //! Decide or remove
+$light-font-color: black; // Correct color
+$light-focus-color: black; //! Decide or remove
 
 // Dark theme colors
-$dark-background-color: black;          // Correct color
-$dark-primary-color: white;
-$dark-secondary-color: green;
+$dark-background-color: black; // Correct color
+$dark-primary-color: #6d6d6d;
+$dark-secondary-color: #eeff5f;
 $dark-button-primary-color: darkorange;
-$dark-button-secondary-color: grey;
+$dark-button-secondary-color: #eeff5f;
 $dark-button-text-color: black;
-$dark-border-color: brown;
+$dark-border-color: darkorange;
 $dark-border-color-secondary: white;
 $dark-card-color: grey;
-$dark-font-color: white;                // Correct color
-$dark-focus-color: #d87946;
+$dark-font-color: white; // Correct color
+$dark-focus-color: black;
 
-// CSS variables defined 
+// CSS variables defined
 :root {
   --background-color: #{$light-background-color};
   --primary-color: #{$light-primary-color};
@@ -44,7 +44,7 @@ $dark-focus-color: #d87946;
   --focus-color: #{$light-focus-color};
 }
 
-[data-theme='dark'] {
+[data-theme="dark"] {
   --background-color: #{$dark-background-color};
   --primary-color: #{$dark-primary-color};
   --secondary-color: #{$dark-secondary-color};
