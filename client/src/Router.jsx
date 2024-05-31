@@ -5,6 +5,7 @@ import { Login } from './pages/Login';
 import { NotFound } from './pages/routes/NotFound';
 import TransactionForm from './pages/TransactionForm/TransactionForm';
 import BlockchainPage from './pages/blockchainFetch/BlockchainPage';
+import RegisterPage from './pages/registerPage/RegisterPage';
 
 export const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ export const router = createBrowserRouter([
       {
         path: 'blockchain',
         element: <BlockchainPage />,
+      },
+      {
+        path: 'register',
+        element: <RegisterPage />,
       },
     ],
   },
