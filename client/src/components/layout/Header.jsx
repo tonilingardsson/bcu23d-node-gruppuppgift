@@ -15,7 +15,7 @@ export const Header = () => {
             </li>
             {/* <li><Link to="/vote">Vote</Link></li> */}
             <li>
-              <Link to="/transaction-form">TransactionForm</Link>
+              <Link to="/transaction-form">Transaction</Link>
             </li>
             {/* <li><Link to="/login">Login</Link></li> */}
             <li>
